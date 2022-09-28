@@ -3,6 +3,7 @@ package co.uniquindio.edu.unicine.entidades;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 public class Pelicula implements Serializable {
@@ -64,5 +65,20 @@ public class Pelicula implements Serializable {
 
     public void setGenero(Genero genero) {
         this.genero = genero;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Pelicula pelicula = (Pelicula) o;
+
+        return Objects.equals(codigo, pelicula.codigo);
+    }
+
+    @Override
+    public int hashCode() {
+        return codigo != null ? codigo.hashCode() : 0;
     }
 }
