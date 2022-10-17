@@ -1,49 +1,30 @@
 package co.uniquindio.edu.unicine.entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.*;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 public class Teatro implements Serializable {
 
     @Id
+    @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String codigo;
+
     private String nombre;
-    private String direccion;
 
-    public Teatro(String codigo, String nombre, String direccion) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.direccion = direccion;
-    }
+    @ManyToOne
+    private Administrador administrador;
 
-    public Teatro() {
-
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-
+    @ManyToOne
+    private Ciudad ciudad;
 }
